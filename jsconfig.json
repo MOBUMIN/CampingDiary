@@ -1,0 +1,12 @@
+{
+	compilerOptions: {
+		baseUrl: '.',
+		paths: {
+			'_components/*': ['/src/components/*'],
+			'_hooks/*': ['/src/hooks/*'],
+			'_states/*': ['/src/states/*'],
+			'_constants/*': ['/src/constants/*'],
+			'_config/*': ['/src/config/*'],
+		}
+	}
+}
