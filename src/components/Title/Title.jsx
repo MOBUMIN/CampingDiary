@@ -1,11 +1,9 @@
-import Link from 'next/link';
-
-const WeatherPage = ({ blackWord, emphasisWord, emphasisLink }) => {
+const Title = ({ className, children }) => {
 	return(
-			<h1 className="m-0 text-6xl">
-				{blackWord}<Link href={emphasisLink ?? ''}><span className={`text-sky-600 ${emphasisLink && 'cursor-pointer'} ${!emphasisLink && 'pointer-events-none'}`}>{emphasisWord}</span></Link>
-			</h1>
+		<h1 className={`text-7xl ${className}`}>
+			{children}
+		</h1>
 	)	
 }
 
-export default WeatherPage;
+export default Title;
