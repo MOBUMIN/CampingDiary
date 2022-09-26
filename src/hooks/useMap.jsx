@@ -5,7 +5,7 @@ function useMap(id) {
 		const target = document.getElementById(id);
 		const option = {
 			center: new kakao.maps.LatLng(37.5173319258532, 127.047377408384),
-			level: 3,
+			level: 15,
 		}
 		const map = new kakao.maps.Map(target, option)
 	}

@@ -3,7 +3,7 @@ import React from 'react';
 const BackgronudImage = ({ src }) => {
 	
 	return (
-		<div className="absolute top-0 left-0 w-full overflow-hidden h-[32rem]">
+		<div className="absolute top-0 left-0 w-full overflow-hidden h-[38rem]">
 			<img
 				src={src}
 				className="absolute bottom-0 left-0 w-full"

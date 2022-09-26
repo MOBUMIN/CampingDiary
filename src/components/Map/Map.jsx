@@ -14,7 +14,7 @@ const Map = () => {
 				src={`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${NEXT_PUBLIC_KAKAO_KEY}&autoload=false`}
 				onLoad={() => kakao.maps.load(initMap)}
 			/>
-			<div id={mapId} style={{width: "500px", height: "400px"}}/>
+			<div id={mapId} className="w-full h-96"/>
 		</>
 	)
 };
