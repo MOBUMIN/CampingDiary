@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./public/camda_logo_white_bg_black.png" alt="logo" />
+</p>
+
 # Camping Diary
 
 나만의 캠핑을 위해,
