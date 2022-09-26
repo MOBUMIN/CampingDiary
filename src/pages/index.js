@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Head from 'next/head'
 import Logo from '_components/Logo'
 import Title from '_components/Title'
+import Map from '_components/Map';
 
 
 export default function Home() {
@@ -25,6 +26,7 @@ export default function Home() {
 					나만의 캠핑을 위해,<br />
 					모두가 즐거운 캠핑을 위해
 				</Title>
+				<Map />
 			</div>
 		</main>
 
