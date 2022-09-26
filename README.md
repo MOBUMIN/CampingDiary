@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./public/camda_logo_white_bg_black.png" alt="logo" />
+  <img src="./public/camda_logo_white_bg_black.png" alt="logo" width="300px" />
 </p>
 
 # Camping Diary
