@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Head from 'next/head'
+import BackgronudImage from '_components/BackgroundImage';
 import Logo from '_components/Logo'
 import Title from '_components/Title'
 import Map from '_components/Map';
@@ -16,11 +17,7 @@ export default function Home() {
 
 		<main>
 			<div className="h-screen p-10 bg-[#004958]">
-				<img
-					src="/home_background.jpg"
-					className="absolute -top-2/4 left-0 w-full"
-					style={{WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 60%,rgba(0,0,0,0) 100%)"}}
-				/>
+				<BackgronudImage src="/home_background.jpg" />
 				<Logo />
 				<Title className="relative mt-20 leading-tight">
 					나만의 캠핑을 위해,<br />
