@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { NEXT_PUBLIC_KAKAO_KEY } from '../config';
 
 function useMap(id) {
-	let searchObject;
+	const [searchObject, setSearchObject] = useState();
 
 	const initMap = () => {
 		const target = document.getElementById(id);
@@ -12,7 +12,7 @@ function useMap(id) {
 		}
 		const map = new window.kakao.maps.Map(target, option)
 		// 장소 검색 객체를 생성합니다
-		searchObject = new kakao.maps.services.Places(map);
+		setSearchObject(new kakao.maps.services.Places());
 	}
 	const loadMap = () => {
 		window.kakao.maps.load(initMap)
