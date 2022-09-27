@@ -18,7 +18,7 @@ export default function Home() {
 		</Head>
 
 		<main>
-			<div className="h-screen px-40 pt-10 bg-[#004958]">
+			<div className="min-h-screen px-40 py-10 bg-[#004958]">
 				<BackgronudImage src="/home_background.jpg" />
 				<Logo />
 				<Title className="relative mt-20 leading-tight">
