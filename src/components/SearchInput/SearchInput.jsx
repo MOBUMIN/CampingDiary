@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import style from './SearchInput.module.scss';
 
-const SearchInput = () => {
+const SearchInput = ({ searchKeyword }) => {
 	const [input, setInput] = useState('');
 	
 	const handleChange = (e) => {
 		setInput(e.target.value);
 	}
 
-	const handleSearch = () => {
-
+	const handleSearch = (e) => {
+		e.preventDefault();
+		searchKeyword(input);
 	}
 
 	return(

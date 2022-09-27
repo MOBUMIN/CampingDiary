@@ -1,21 +1,43 @@
 import { useEffect } from 'react';
+import { NEXT_PUBLIC_KAKAO_KEY } from '../config';
 
 function useMap(id) {
+	let searchObject;
+
 	const initMap = () => {
 		const target = document.getElementById(id);
 		const option = {
-			center: new kakao.maps.LatLng(37.5173319258532, 127.047377408384),
+			center: new window.kakao.maps.LatLng(37.5173319258532, 127.047377408384),
 			level: 13,
 		}
-		const map = new kakao.maps.Map(target, option)
+		const map = new window.kakao.maps.Map(target, option)
+		// 장소 검색 객체를 생성합니다
+		searchObject = new kakao.maps.services.Places(map);
+	}
+	const loadMap = () => {
+		window.kakao.maps.load(initMap)
+	}
+	const loadMapScript = () => {
+		const mapScript = document.createElement("script");
+		mapScript.async = true;
+		mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${NEXT_PUBLIC_KAKAO_KEY}&autoload=false&libraries=services`;
+		document.head.appendChild(mapScript);
+
+		mapScript.addEventListener("load", loadMap)
 	}
 
+
 	useEffect(() => {
-		if(window?.kakao)
-			initMap();
+		loadMapScript();
 	}, [])
+
+	const searchKeyword = (keyword) => {
+		searchObject.keywordSearch(keyword, (data, status, pagination) => {
+			console.log(data, status, pagination);
+		})
+	}
 	
-	return { initMap }
+	return { searchKeyword }
 }
 
 export default useMap;

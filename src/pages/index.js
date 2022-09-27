@@ -7,8 +7,11 @@ import Map from '_components/Map';
 import SearchInput from '_components/SearchInput';
 import ArrowText from 'src/components/ArrowText';
 
+import useMap from '_hooks/useMap';
 
 export default function Home() {
+	const mapId = "map"
+	const { searchKeyword } = useMap(mapId)
 	
   return (
 	<>
@@ -25,9 +28,9 @@ export default function Home() {
 					나만의 캠핑을 위해,<br />
 					모두가 즐거운 캠핑을 위해
 				</Title>
-				<SearchInput />
+				<SearchInput searchKeyword={searchKeyword} />
 				<ArrowText>원하는 캠핑장을 지도에서 찾아 보세요!</ArrowText>
-				<Map />
+				<Map mapId={mapId} />
 			</div>
 		</main>
 
