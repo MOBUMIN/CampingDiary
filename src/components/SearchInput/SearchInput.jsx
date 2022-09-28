@@ -10,7 +10,8 @@ const SearchInput = ({ searchKeyword }) => {
 
 	const handleSearch = (e) => {
 		e.preventDefault();
-		searchKeyword(input);
+		if(input.replace(/^\s+|\s+$/g, ''))
+			searchKeyword(input);
 	}
 
 	return(
