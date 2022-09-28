@@ -4,6 +4,7 @@ import { NEXT_PUBLIC_KAKAO_KEY } from '../config';
 function useMap(id) {
 	const [map, setMap] = useState();
 	const [searchObject, setSearchObject] = useState();
+	let markers = [];
 
 	const initMap = () => {
 		const target = document.getElementById(id);
@@ -36,6 +37,7 @@ function useMap(id) {
 	const searchKeyword = (keyword) => {
 		searchObject.keywordSearch(keyword, (data, status, pagination) => {
 			console.log(data, status, pagination);
+			removeMarker();
 			makeMarker(data);
 		})
 	}
@@ -48,7 +50,15 @@ function useMap(id) {
 				title : data[i].place_name,
 				position: markerPosition
 			});
+			
+			markers.push(marker);
 		}
+	}
+	
+	const removeMarker = () => {
+		for(let i=0; i<markers.length; i++)
+			markers[i].setMap(null);
+		markers = [];
 	}
 	
 	return { searchKeyword }
