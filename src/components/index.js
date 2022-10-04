@@ -6,3 +6,4 @@ export { default as Map } from './Map';
 export { default as Title } from './Title';
 export { default as Footer } from './Footer';
 export { default as SearchInput } from './SearchInput';
+export { default as Login } from './Login';
