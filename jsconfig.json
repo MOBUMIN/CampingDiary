@@ -2,7 +2,7 @@
 	compilerOptions: {
 		baseUrl: '.',
 		paths: {
-			'_components/*': ['/src/components/*'],
+			'_components': ['/src/components/index.js'],
 			'_icons': ['/src/icons/index.js'],
 			'_hooks/*': ['/src/hooks/*'],
 			'_states/*': ['/src/states/*'],

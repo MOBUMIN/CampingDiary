@@ -1,14 +1,7 @@
-import { useEffect } from 'react';
 import Head from 'next/head'
-import BackgronudImage from '_components/BackgroundImage';
 
-import Title from '_components/Title'
-import Map from '_components/Map';
-import SearchInput from '_components/SearchInput';
-import ArrowText from 'src/components/ArrowText';
-
+import { BackgroundImage, Title, Map, ArrowText, SearchInput } from '_components';
 import { LogoIcon } from '_icons';
-
 import useMap from '_hooks/useMap';
 
 export default function Home() {
@@ -24,7 +17,7 @@ export default function Home() {
 
 		<main>
 			<div className="min-h-screen px-40 py-10 bg-[#004958]">
-				<BackgronudImage src="/home_background.jpg" />
+				<BackgroundImage src="/home_background.jpg" />
 				<LogoIcon className="relative text-white w-60" />
 				<Title className="relative mt-20 leading-tight">
 					나만의 캠핑을 위해,<br />
