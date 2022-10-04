@@ -3,6 +3,7 @@
 		baseUrl: '.',
 		paths: {
 			'_components/*': ['/src/components/*'],
+			'_icons': ['/src/icons/index.js'],
 			'_hooks/*': ['/src/hooks/*'],
 			'_states/*': ['/src/states/*'],
 			'_constants/*': ['/src/constants/*'],
