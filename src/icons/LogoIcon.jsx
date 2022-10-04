@@ -1,5 +1,5 @@
 import React from 'react';
-import IconBase from '_components/IconBase';
+import { IconBase } from '_components';
 
 const LogoIcon = props => (
 	<IconBase width="current" height="current" viewBox="0 0 389 54" fill="currentColor" xmlns="http://www.w3.org/2000/svg" {...props} >
