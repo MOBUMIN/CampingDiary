@@ -16,7 +16,7 @@ export default function Home() {
 		</Head>
 
 		<main>
-			<div className="min-h-screen px-40 py-10 bg-[#004958]">
+			<div className="min-h-screen p-8 md:px-40 md:py-10 bg-[#004958]">
 				<BackgroundImage src="/home_background.jpg" />
 				<div className="flex justify-between">
 					<LogoIcon className="relative text-white w-60" />

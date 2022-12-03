@@ -13,7 +13,7 @@ const Login = () => {
 	return (
 		<div className="relative">
 			<button onClick={openModal}>로그인</button>
-			<div ref={modalRef} className={`absolute top-10 right-0 flex flex-col gap-8 items-center justify-center p-16 h-[25rem] w-[27rem] rounded-lg bg-white z-10 ${getOpen()}`}>
+			<div ref={modalRef} className={`absolute top-10 -right-8 md:right-0 flex flex-col gap-8 items-center justify-center p-16 h-[25rem] w-screen md:w-[27rem] rounded-lg bg-white z-10 ${getOpen()}`}>
 				<LogoIcon className="text-gray-900 mx-auto h-8 w-auto" />
 				<form className="w-full max-w-md flex flex-col gap-5" action="#" method="POST">
 					<input type="hidden" name="remember" defaultValue="true" />
