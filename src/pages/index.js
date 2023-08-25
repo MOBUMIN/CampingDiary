@@ -20,7 +20,6 @@ export default function Home() {
 				<BackgroundImage src="/home_background.jpg" />
 				<div className="flex justify-between">
 					<LogoIcon className="relative text-white w-60" />
-					<Login />
 				</div>
 				<Title className="relative mt-20 leading-tight">
 					나만의 캠핑을 위해,<br />

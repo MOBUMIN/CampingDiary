@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { NEXT_PUBLIC_KAKAO_KEY } from '../config';
+import diaries from '../diaries';
 
 function useMap(id) {
-	const [map, setMap] = useState();
-	const [searchObject, setSearchObject] = useState();
+	let map = null;
 	let markers = [];
 
 	const initMap = () => {
@@ -11,14 +11,16 @@ function useMap(id) {
 		const option = {
 			center: new window.kakao.maps.LatLng(37.5173319258532, 127.047377408384),
 			level: 13,
+			draggable: false,
 		}
-		const map = new window.kakao.maps.Map(target, option)
-		setMap(map);
-		// 장소 검색 객체를 생성합니다
-		setSearchObject(new kakao.maps.services.Places());
+		map = new window.kakao.maps.Map(target, option)
+
+		diaries.forEach(diary => {
+			makeMarker(diary);
+		})
 	}
 	const loadMap = () => {
-		window.kakao.maps.load(initMap)
+		window.kakao.maps.load(initMap)	
 	}
 	const loadMapScript = () => {
 		const mapScript = document.createElement("script");
@@ -35,30 +37,47 @@ function useMap(id) {
 	}, [])
 
 	const searchKeyword = (keyword) => {
-		searchObject.keywordSearch(keyword, (data, status, pagination) => {
-			console.log(data, status, pagination);
-			removeMarker();
-			makeMarker(data);
+		diaries.forEach(diary => {
+			if(diary.place_name.includes(keyword)) {
+				makeMarker(diary);
+			}
 		})
 	}
 	 
 	const makeMarker = (data) => {
-		for(let i = 0; i < data.length; i++) {
-			const markerPosition = new kakao.maps.LatLng(data[i].y, data[i].x);
-			const marker = new kakao.maps.Marker({
-				map,
-				title : data[i].place_name,
-				position: markerPosition
-			});
-			
-			markers.push(marker);
-		}
+		const markerPosition = new kakao.maps.LatLng(data.y, data.x);
+		const marker = new kakao.maps.Marker({
+			map,
+			title : data.place_name,
+			position: markerPosition
+		});
+
+		displayInfowindow(marker, data.place_name, data.id);
+		const infoEl = document.getElementById(data.id).parentElement.parentElement;
+
+		kakao.maps.event.addListener(marker, 'mouseover', function() {
+			infoEl.style.zIndex = 10;
+		});
+		kakao.maps.event.addListener(marker, 'mouseout', function() {
+			infoEl.style.zIndex = 1;
+		});
+		
+		markers.push(marker);
 	}
 	
 	const removeMarker = () => {
 		for(let i=0; i<markers.length; i++)
 			markers[i].setMap(null);
 		markers = [];
+	}
+
+	const displayInfowindow = (marker, title, id) => {
+		const infoWindow = new window.kakao.maps.InfoWindow({ zIndex:1 });
+	
+		const content = `<div id=${id} style="padding:5px;z-index:1;">${title}</div>`;
+
+		infoWindow.setContent(content);
+		infoWindow.open(map, marker);
 	}
 	
 	return { searchKeyword }
