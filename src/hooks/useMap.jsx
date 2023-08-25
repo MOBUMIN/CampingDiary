@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import DiaryModal from 'src/components/DiaryModal';
 import { NEXT_PUBLIC_KAKAO_KEY } from '../config';
 import diaries from '../diaries';
 
@@ -37,6 +39,7 @@ function useMap(id) {
 	}, [])
 
 	const searchKeyword = (keyword) => {
+		removeMarker();
 		diaries.forEach(diary => {
 			if(diary.place_name.includes(keyword)) {
 				makeMarker(diary);
@@ -54,6 +57,7 @@ function useMap(id) {
 
 		displayInfowindow(marker, data.place_name, data.id);
 		const infoEl = document.getElementById(data.id).parentElement.parentElement;
+		infoEl.style.cursor = 'pointer';
 
 		kakao.maps.event.addListener(marker, 'mouseover', function() {
 			infoEl.style.zIndex = 10;
@@ -61,11 +65,19 @@ function useMap(id) {
 		kakao.maps.event.addListener(marker, 'mouseout', function() {
 			infoEl.style.zIndex = 1;
 		});
+		kakao.maps.event.addListener(marker, 'click', function() {
+			openModal(data);
+		});
+		infoEl.addEventListener('click', () => {
+			openModal(data);
+		})
 		
 		markers.push(marker);
 	}
 	
 	const removeMarker = () => {
+		const infowWindows = document.querySelectorAll('.info-windows')
+		infowWindows.forEach(dom => dom.parentElement.parentElement.remove())
 		for(let i=0; i<markers.length; i++)
 			markers[i].setMap(null);
 		markers = [];
@@ -74,10 +86,19 @@ function useMap(id) {
 	const displayInfowindow = (marker, title, id) => {
 		const infoWindow = new window.kakao.maps.InfoWindow({ zIndex:1 });
 	
-		const content = `<div id=${id} style="padding:5px;z-index:1;">${title}</div>`;
+		const content = `<div id=${id} style="padding:5px;z-index:1;" class="info-windows text-neutral-950">${title}</div>`;
 
 		infoWindow.setContent(content);
 		infoWindow.open(map, marker);
+	}
+
+	const closeModal = () => {
+		ReactDOM.unmountComponentAtNode(document.getElementById('modal-root'))
+	}
+
+	const openModal = (diary) => {
+		const modalRoot = document.getElementById('modal-root');
+		ReactDOM.render(<DiaryModal diary={diary} onClose={closeModal} />, modalRoot);
 	}
 	
 	return { searchKeyword }
