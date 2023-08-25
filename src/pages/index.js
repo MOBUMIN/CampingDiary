@@ -29,6 +29,7 @@ export default function Home() {
 				<SearchInput searchKeyword={searchKeyword} />
 				<ArrowText>원하는 캠핑장을 지도에서 찾아 보세요!</ArrowText>
 				<Map mapId={mapId} />
+                <span className="font-['dandan']"></span>
 			</div>
 		</main>
 
